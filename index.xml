@@ -110,7 +110,18 @@ example &amp;lt;h3&amp;gt;Binding innerHTML&amp;lt;/h3&amp;gt; &amp;lt;p&amp;gt;
       <pubDate>Mon, 26 Mar 2018 10:42:51 +0800</pubDate>
       
       <guid>/posts/%E6%9F%90%E5%B9%B3%E5%8F%B0ctf-web/</guid>
-      <description></description>
+      <description>web题目wp web-1 送分题 题目地址 http://45.124.115.155:8002/bd6b406e7ab5ca24/
+访问得知是一个登录框，我们右键查看源代码得到重要信息 可以得到此登录框用户名是amdin，密码from（month/day）因此猜想密码来自日期，构造字典为所有的日期天数爆破，后来爆破无果，换成4位数字就可以，burpsite设置参数类型 爆破得出密码为 9527 因此获得flag为：flag{brute_force_attack97dsads}
+web-2 信息泄露 题目地址 http://45.124.115.155:8007/28bc0902b253f1ca/
+题目提示信息泄露，因此我们尝试找下敏感信息泄露的文件，用御剑或者别的工具扫描得到一个 www.rar
+我们访问下载，得到文件内容____查看info.txt 题目提示vim退出产生的临时文件，即vim产生临时的swp文件，因此我们访问 config,inc.swp这个文件
+拿到flag flag{8622EFE3BADA2CC28622EFE3BADA2CC2}
+web-3 抓包 题目打开后是一个链接，我们访问发现链接跳转到404，利用chrome浏览器f12开发者工具得到 我们使用burpsite抓包访问
+得到加密字符串，经过分析是base64加密，解密得到 flag为 flag{Redirection302}
+web-4 会编程吗 题目打开让我们下载文件 但是分析下载文件的链接 http://45.124.115.155:8002/732a68da659cba5b/?file=flag.txt 发现存在任意文件下载，构造链接
+http://45.124.115.155:8002/732a68da659cba5b/?file=flag.php
+下载得到flag.php文件，打开发现内容如下:
+&amp;lt;?php header(&amp;#39;Content-Type: text/html; charset=utf-8&amp;#39;); function encrypt($data, $key) { $key = md5 ( $key ); $x = 0; $len = strlen ( $data ); $l = strlen ( $key ); for($i = 0; $i &amp;lt; $len; $i ++) { if ($x == $l) { $x = 0; } $char .</description>
     </item>
     
     <item>
