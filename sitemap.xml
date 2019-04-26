@@ -73,6 +73,17 @@
   </url>
   
   <url>
+    <loc>/tags/ctf/</loc>
+    <lastmod>2018-03-26T10:42:51+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/posts/%E6%9F%90%E5%B9%B3%E5%8F%B0ctf-web/</loc>
+    <lastmod>2018-03-26T10:42:51+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/about-hugo/</loc>
     <lastmod>2014-04-09T00:00:00+00:00</lastmod>
   </url>
