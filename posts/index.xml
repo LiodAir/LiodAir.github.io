@@ -81,6 +81,8 @@ Set.constructor`al\x65rt\x2814\x29```;</code></pre></div>
 
 {&quot;root&quot;:&quot;CRYO_REF_3&quot;,&quot;references&quot;:[{&quot;contents&quot;:{},&quot;value&quot;:&quot;_CRYO_FUNCTION_function () {console.log(\&quot;defconrussia\&quot;); return 1111;}&quot;},{&quot;contents&quot;:{},&quot;value&quot;:&quot;_CRYO_FUNCTION_function () {return 2222;}&quot;},{&quot;contents&quot;:{&quot;toString&quot;:&quot;_CRYO_REF_0&quot;,&quot;valueOf&quot;:&quot;_CRYO_REF_1&quot;},&quot;value&quot;:&quot;_CRYO_OBJECT&quot;},{&quot;contents&quot;:{&quot;proto&quot;:&quot;CRYO_REF_2&quot;},&quot;value&quot;:&quot;_CRYO_OBJECT&quot;}]}
 </code></pre>
+
+<p>来源: <a href="https://www.acunetix.com/blog/web-security-zone/deserialization-vulnerabilities-attacking-deserialization-in-js/?tdsourcetag=s_pctim_aiomsg">https://www.acunetix.com/blog/web-security-zone/deserialization-vulnerabilities-attacking-deserialization-in-js/?tdsourcetag=s_pctim_aiomsg</a></p>
 ]]></content>
 		</item>
 		
