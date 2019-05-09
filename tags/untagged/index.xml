@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>untagged on Liod &#39;s Blog</title>
+    <link>/tags/untagged/</link>
+    <description>Recent content in untagged on Liod &#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Thu, 09 May 2019 13:43:43 +0800</lastBuildDate>
+    
+	<atom:link href="/tags/untagged/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>数据库UDF记录</title>
+      <link>/posts/%E6%95%B0%E6%8D%AE%E5%BA%93udf%E8%AE%B0%E5%BD%95/</link>
+      <pubDate>Thu, 09 May 2019 13:43:43 +0800</pubDate>
+      
+      <guid>/posts/%E6%95%B0%E6%8D%AE%E5%BA%93udf%E8%AE%B0%E5%BD%95/</guid>
+      <description> 前言 记录一下各个数据库的UDF
+SQlite ➜ workspace git:(master) ✗ touch udf.db ➜ workspace git:(master) ✗ sqlite3 udf.db SQLite version 3.11.0 2016-02-15 17:29:24 Enter &amp;#34;.help&amp;#34; for usage hints. sqlite&amp;gt; select load_extension(&amp;#34;/home/coding/workspace/tt/sql3_udf/sql3&amp;#34;); sqlite&amp;gt; select do_exec(&amp;#34;whoami&amp;#34;); coding sqlite&amp;gt; select do_exec(&amp;#34;pwd&amp;#34;); /home/coding/workspace  扩展文件
+ sql3.zip
+来源: GitHub - hatRiot/sql3_udf: Simple sqlite system UDF (runtime extension)
+mysql dai  </description>
+    </item>
+    
+  </channel>
+</rss>

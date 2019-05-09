@@ -6,8 +6,56 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>zh-cn</language>
 		<copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-		<lastBuildDate>Thu, 25 Apr 2019 21:15:41 +0800</lastBuildDate>
+		<lastBuildDate>Thu, 09 May 2019 13:43:43 +0800</lastBuildDate>
 		<atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>数据库UDF记录</title>
+			<link>/posts/%E6%95%B0%E6%8D%AE%E5%BA%93udf%E8%AE%B0%E5%BD%95/</link>
+			<pubDate>Thu, 09 May 2019 13:43:43 +0800</pubDate>
+			
+			<guid>/posts/%E6%95%B0%E6%8D%AE%E5%BA%93udf%E8%AE%B0%E5%BD%95/</guid>
+			<description> 前言 记录一下各个数据库的UDF
+SQlite ➜ workspace git:(master) ✗ touch udf.db ➜ workspace git:(master) ✗ sqlite3 udf.db SQLite version 3.11.0 2016-02-15 17:29:24 Enter &amp;#34;.help&amp;#34; for usage hints. sqlite&amp;gt; select load_extension(&amp;#34;/home/coding/workspace/tt/sql3_udf/sql3&amp;#34;); sqlite&amp;gt; select do_exec(&amp;#34;whoami&amp;#34;); coding sqlite&amp;gt; select do_exec(&amp;#34;pwd&amp;#34;); /home/coding/workspace  扩展文件
+ sql3.zip
+来源: GitHub - hatRiot/sql3_udf: Simple sqlite system UDF (runtime extension)
+mysql dai  </description>
+			<content type="html"><![CDATA[
+
+<h1 id="前言">前言</h1>
+
+<hr />
+
+<p>记录一下各个数据库的UDF</p>
+
+<h2 id="sqlite">SQlite</h2>
+
+<hr />
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">➜  workspace git:<span class="o">(</span>master<span class="o">)</span> ✗ touch udf.db
+➜  workspace git:<span class="o">(</span>master<span class="o">)</span> ✗ sqlite3 udf.db 
+SQLite version <span class="m">3</span>.11.0 <span class="m">2016</span>-02-15 <span class="m">17</span>:29:24
+Enter <span class="s2">&#34;.help&#34;</span> <span class="k">for</span> usage hints.
+sqlite&gt; <span class="k">select</span> load_extension<span class="o">(</span><span class="s2">&#34;/home/coding/workspace/tt/sql3_udf/sql3&#34;</span><span class="o">)</span><span class="p">;</span>
+
+sqlite&gt; <span class="k">select</span> do_exec<span class="o">(</span><span class="s2">&#34;whoami&#34;</span><span class="o">)</span><span class="p">;</span>
+coding
+sqlite&gt; <span class="k">select</span> do_exec<span class="o">(</span><span class="s2">&#34;pwd&#34;</span><span class="o">)</span><span class="p">;</span>
+/home/coding/workspace</code></pre></div>
+<blockquote>
+<p>扩展文件</p>
+</blockquote>
+
+<p><a href="https://github.com/LiodAir/LiodAir.github.io/files/3160511/sql3.zip">sql3.zip</a></p>
+
+<p>来源:
+<a href="https://github.com/hatRiot/sql3_udf">GitHub - hatRiot/sql3_udf: Simple sqlite system UDF (runtime extension)</a></p>
+
+<h2 id="mysql">mysql</h2>
+
+<pre><code>dai
+</code></pre>
+]]></content>
+		</item>
 		
 		<item>
 			<title>Payload记录</title>
